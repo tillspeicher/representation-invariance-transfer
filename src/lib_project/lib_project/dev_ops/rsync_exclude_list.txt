@@ -1,0 +1,40 @@
+*.o
+*.d
+*.swo
+
+*.pyc
+__pycache__
+.pytest_cache
+.ipynb_checkpoints
+.mypy_cache
+
+*.sat
+
+*.log
+*.out
+
+.git
+.gitmodules
+.svn
+
+MaxHS*
+
+# Checkpoint files
+*.ckpt
+checkpoints/
+*.bin
+*_checkpoint/
+
+# Tensorboard log files
+#logs/
+events.out.tfevents.*
+hparams.yaml
+
+# Venvs
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/

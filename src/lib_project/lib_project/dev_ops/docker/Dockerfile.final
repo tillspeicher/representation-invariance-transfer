@@ -1,0 +1,42 @@
+ARG BUILDER_IMAGE_NAME
+ARG INPUT_IMAGE_NAME
+
+FROM ${BUILDER_IMAGE_NAME} as builder
+
+FROM ${INPUT_IMAGE_NAME} AS exp_final
+
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install \
+        --no-install-recommends -y --reinstall \
+        openssh-client
+
+ARG EXP_DIR
+WORKDIR $EXP_DIR
+
+ARG APP_NAME
+COPY --from=builder $EXP_DIR/ $EXP_DIR/
+RUN pip install --no-cache-dir ./dist/${APP_NAME}*.whl --constraint constraints.txt
+# Install the deepspeed wheel with pre-compiled ops, if it's present
+RUN if [ -f ./dist/deepspeed*.whl ]; then \
+        pip install --no-cache-dir ./dist/deepspeed*.whl --constraint constraints.txt; \
+    else \
+        echo "Deepspeed wheel not found in ./dist, skipping installation."; \
+    fi
+# RUN pip install --no-cache-dir ./dist/deepspeed*.whl
+
+ARG HOST_UID
+ARG HOST_GID
+ARG ENTRYPOINT_DIR
+# COPY $ENTRYPOINT_DIR/entrypoint.sh $EXP_DIR/
+# RUN chmod +x $EXP_DIR/entrypoint.sh
+
+# Create a non-root user, but don't switch to it yet
+# The Docker setup here is run both with rootful and rootless Docker
+# and we only want to switch to a non-root user in the rootful case
+# as the rootless one does it automatically, and doing an additional
+# switch causes permission errors when creating or accessing files.
+RUN groupadd -g $HOST_GID exp \
+    && useradd --no-log-init -u $HOST_UID -g $HOST_GID exp \
+    && chown -R exp:exp $EXP_DIR
+
+# ENTRYPOINT ["./entrypoint.sh"]

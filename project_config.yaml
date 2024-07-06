@@ -1,0 +1,27 @@
+# TODO: dymmy config, you might want to replace it with a custom one
+# created by running `python actions.py init`
+dirs:
+  artifacts: artifacts
+  data: data
+ports:
+  jupyter: 8888
+server:
+  username: user
+  contact_address: contact
+upload:
+  results_root_dir: results
+  results_url_prefix: https://results
+sync:
+  server_project_root: server
+  local_project_root: .
+docker:
+  image: representation_invariance
+  build:
+    dockerfile: scripts/Dockerfile
+    builder_base_image: docker.io/pytorch/pytorch:2.2.2-cuda12.1-cudnn8-devel
+    target_base_image:
+      runtime: docker.io/pytorch/pytorch:2.2.2-cuda12.1-cudnn8-runtime
+      devel: docker.io/pytorch/pytorch:2.2.2-cuda12.1-cudnn8-devel
+  image_storage_dir: container_dir
+  environment: []
+sid: 0

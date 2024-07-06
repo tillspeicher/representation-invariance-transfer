@@ -1,0 +1,74 @@
+[tool.poetry]
+name = "lib_dl_base"
+version = "0.1.0"
+description = "Library for shared (DL) project core code"
+authors = ["Till Speicher <dev@tillspeicher.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+dacite = "^1.8.1"
+jsonpickle = "^3.0.2"
+pandas = "^2.1.4"
+numpy = "^1.26.2"
+pyarrow = "^16.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.4.0"
+pytest = "^7.4.2"
+neovim = "^0.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 80
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+    | \.hg
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | \.mypy_cache
+    | build
+    | dist
+)/
+'''
+
+[tool.isort]
+atomic = true
+profile = "black"
+line_length = 80
+skip_gitignore = true
+lines_after_imports = 2
+known_first_party = ["lib_dl_base"]
+skip = [".gitignore"]
+
+[tool.flake8]
+max-line-length = 81
+max-doc-length = 81
+max-complexity = 10
+ignore = ["E203", "E266", "E501", "W503", "F403", "F401", "E402", "C901"]
+per-file-ignores = ["__init__.py:F401", "tests/*:S101"]
+exclude = [".git", "__pycache__", "dist"]
+
+[tool.pyright]
+include = ["lib_dl_base"]
+executionEnvironments = [{ root = "tests", extraPaths = ["."] }]
+reportMissingImports = "true"
+pythonVersion = "3.10"
+# The setup.sh script creates a symbolic link called .venv pointing to
+# the virtual environment used by poetry
+venvPath = "."
+venv = ".venv"
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib"]
+pythonpath = ["."]
+testpaths = ["tests"]

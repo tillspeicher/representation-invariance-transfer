@@ -1,8 +1,8 @@
-# Code for "Understanding the Role of Invariance in Transfer Learning", [TMLR 2024]()
+# Code for "Understanding the Role of Invariance in Transfer Learning", [TMLR 2024](https://arxiv.org/abs/2407.04325)
 
-This code was used for running the experiments in the paper [Understanding the Role of Invariance in Transfer Learning]().
+This code was used for running the experiments in the paper [Understanding the Role of Invariance in Transfer Learning](https://arxiv.org/abs/2407.04325).
 
-The paper explores how important representational invariance for transfer performance, compared to other factors such as model architecture and pretraining dataset size, under which conditions invariance can harm transfer performance, and how transferable invariance is to other domains.
+The paper explores how important representational invariance is for transfer performance, compared to other factors such as model architecture and pretraining dataset size, under which conditions invariance can harm transfer performance, and how transferable invariance is to other domains.
 Experiments are conducted using a synthetic dataset, Transforms-2D, with carefully controlled transformations acting on image objects, as well as with augmented CIFAR datasets.
 
 ## Usage
@@ -38,3 +38,15 @@ They are based on the [SI-score dataset](https://github.com/google-research/si-s
 Please consider citing the original authors of this work as well, if you use these images.
 
 ## Citation
+If you find this work useful, please consider citing it:
+```
+@misc{speicher2024understanding,
+      title={Understanding the Role of Invariance in Transfer Learning}, 
+      author={Till Speicher and Vedant Nanda and Krishna P. Gummadi},
+      year={2024},
+      eprint={2407.04325},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2407.04325}, 
+}
+```

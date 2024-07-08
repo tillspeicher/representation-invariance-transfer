@@ -39,7 +39,7 @@ Please consider citing the original authors of this work as well, if you use the
 
 ## Citation
 If you find this work useful, please consider citing it:
-```
+```bibtex
 @misc{speicher2024understanding,
       title={Understanding the Role of Invariance in Transfer Learning}, 
       author={Till Speicher and Vedant Nanda and Krishna P. Gummadi},

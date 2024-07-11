@@ -40,13 +40,13 @@ Please consider citing the original authors of this work as well, if you use the
 ## Citation
 If you find this work useful, please consider citing it:
 ```bibtex
-@misc{speicher2024understanding,
-      title={Understanding the Role of Invariance in Transfer Learning}, 
-      author={Till Speicher and Vedant Nanda and Krishna P. Gummadi},
-      year={2024},
-      eprint={2407.04325},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2407.04325}, 
+@article{
+    speicher2024understanding,
+    title={Understanding the Role of Invariance in Transfer Learning},
+    author={Till Speicher and Vedant Nanda and Krishna P. Gummadi},
+    journal={Transactions on Machine Learning Research},
+    issn={2835-8856},
+    year={2024},
+    url={https://arxiv.org/abs/2407.04325},
 }
 ```
